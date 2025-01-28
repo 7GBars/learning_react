@@ -19,7 +19,14 @@ export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundarySt
     }
     return { error: null };
   }
-
+  static componentDidCatch(error: any, info: any) {
+    // Example "componentStack":
+    //   in ComponentThatThrows (created by App)
+    //   in ErrorBoundary (created by App)
+    //   in div (created by App)
+    //   in App
+    console.log(error, info.componentStack);
+  }
   render() {
     const { error } = this.state;
     const { ErrorComponent, children} = this.props;

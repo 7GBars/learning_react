@@ -1,13 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
+
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { UserProvidersContainer } from "./providers";
 
-const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
-);
+import './index.css';
+
+const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement, {
+  identifierPrefix: 'test-for-useId'
+});
+
 root.render(
   <React.StrictMode>
     <UserProvidersContainer>
@@ -16,6 +19,9 @@ root.render(
 
   </React.StrictMode>
 );
+
+// root.unmount(); - может использоваться при микрофронтах
+
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
