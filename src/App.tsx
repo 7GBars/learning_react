@@ -1,12 +1,22 @@
 import React from 'react';
-import logo from './logo.svg';
+
+import { userData } from "./__mocks__/errors";
+
 import './App.css';
 
-
 function App() {
+
   return (
     <div className="App">
- text
+      {userData.map((user) => (
+        <div key={user.id}>
+          <p>Name: {user.name}</p>
+          <p>Company: {user.company}</p>
+          <button onClick={() => console.log(user.name)}>
+            More details
+          </button>
+        </div>
+      ))}
     </div>
   );
 }

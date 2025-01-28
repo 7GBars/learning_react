@@ -1,2 +1,2 @@
 export * from './errorBoundary';
-export * from './errorMessage';
+export * from './pages/error';
