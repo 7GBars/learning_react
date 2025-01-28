@@ -12,12 +12,9 @@ const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement,
 });
 
 root.render(
-  <React.StrictMode>
     <UserProvidersContainer>
       <App />
     </UserProvidersContainer>
-
-  </React.StrictMode>
 );
 
 // root.unmount(); - может использоваться при микрофронтах
