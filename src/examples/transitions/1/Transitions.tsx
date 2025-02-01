@@ -9,7 +9,6 @@ type TTransitionsProps = {}
 
 export const Transitions: React.FC<TTransitionsProps> = ({}) => {
     const [isPending, setIsPending] = useState(false);
-    console.log("render")
     const [quantity, setQuantity] = useState(1);
     const [cost, setCost] = useState(quantity * 4);
     const debounced = useDebounce(quantity, 500);
