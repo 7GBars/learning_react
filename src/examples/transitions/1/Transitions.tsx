@@ -1,32 +1,38 @@
-import React, { useState, useTransition } from 'react';
-import { Product } from "./Product";
-import { getProductCots } from "./api";
-import { Total } from "./Total";
+import React, {useEffect, useState, useTransition} from 'react';
+import {Product} from "./Product";
+import {getProductCots} from "./api";
+import {Total} from "./Total";
+import {useDebounce} from "./useDebounce/useDebounce";
 
 
 type TTransitionsProps = {}
 
 export const Transitions: React.FC<TTransitionsProps> = ({}) => {
-  const [isPending, setIsPending] = useState(false);
+    const [isPending, setIsPending] = useState(false);
+    console.log("render")
+    const [quantity, setQuantity] = useState(1);
+    const [cost, setCost] = useState(quantity * 4);
+    const debounced = useDebounce(quantity, 500);
 
-  const [quantity, setQuantity] = useState(1);
-  const [cost, setCost] = useState(quantity * 4);
+    useEffect(() => {
 
-  const onUpdateQuantity = async (newQuantity: number) => {
-    setIsPending(true);
-    const newCost = await getProductCots(newQuantity);
-    setIsPending(false);
-    setCost(newCost);
-    setQuantity(newQuantity);
-  };
+        if (debounced) {
+            setIsPending(true);
+            getProductCots(debounced)
+                .then((newCost) => {
+                    setCost(newCost);
+                    setIsPending(false)
+                })
+        }
+    }, [debounced]);
 
-  return (
-    <div>
-      <h1>Checkout</h1>
-      <Product onUpdateQuantity={onUpdateQuantity}/>
-      <hr/>
-      <Total cost={cost} isPending={isPending}/>
-    </div>
-  );
+    return (
+        <div>
+            <h1>Checkout</h1>
+            <Product onUpdateQuantity={setQuantity}/>
+            <hr/>
+            <Total cost={cost} isPending={isPending}/>
+        </div>
+    );
 }
 

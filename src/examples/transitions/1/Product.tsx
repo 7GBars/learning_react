@@ -1,12 +1,12 @@
-import React from 'react';
+import React, {Dispatch, SetStateAction} from 'react';
 
 type TProductProps = {
-  onUpdateQuantity: (quantity: number) => Promise<void>;
+  onUpdateQuantity: Dispatch<SetStateAction<number>>
 }
 
 export const Product: React.FC<TProductProps> = ({onUpdateQuantity}) => {
-  const handleChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    await onUpdateQuantity(parseInt(e.target.value, 10));
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+     onUpdateQuantity(parseInt(e.target.value, 10));
   }
   return (
     <div className="item">
