@@ -1,13 +1,12 @@
-  import React from 'react';
+import React, {Dispatch, SetStateAction} from 'react';
 
 type TProductProps = {
-  onUpdateQuantity: any
-  isPending: boolean;
+  onUpdateQuantity: Dispatch<SetStateAction<number>>
 }
 
-export const Product: React.FC<TProductProps> = ({onUpdateQuantity, isPending}) => {
-  const handleChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    await onUpdateQuantity(parseInt(e.target.value, 10));
+export const Product: React.FC<TProductProps> = ({onUpdateQuantity}) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+     onUpdateQuantity(parseInt(e.target.value, 10));
   }
   return (
     <div className="item">
@@ -15,7 +14,6 @@ export const Product: React.FC<TProductProps> = ({onUpdateQuantity, isPending}) 
       <label htmlFor="name">Quantity: </label>
       <input
         type="number"
-        disabled={isPending}
         onChange={handleChange}
         defaultValue={1}
         min={1}
