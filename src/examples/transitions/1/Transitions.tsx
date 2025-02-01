@@ -8,30 +8,30 @@ import {useDebounce} from "./useDebounce/useDebounce";
 type TTransitionsProps = {}
 
 export const Transitions: React.FC<TTransitionsProps> = ({}) => {
-    const [isPending, setIsPending] = useState(false);
-    const [quantity, setQuantity] = useState(1);
-    const [cost, setCost] = useState(quantity * 4);
-    const debounced = useDebounce(quantity, 500);
+  const [isPending, setIsPending] = useState(false);
+  const [quantity, setQuantity] = useState(1);
+  const [cost, setCost] = useState(quantity * 4);
+  const debounced = useDebounce(quantity, 500);
 
-    useEffect(() => {
+  useEffect(() => {
 
-        if (debounced) {
-            setIsPending(true);
-            getProductCots(debounced)
-                .then((newCost) => {
-                    setCost(newCost);
-                    setIsPending(false)
-                })
-        }
-    }, [debounced]);
+    if (debounced) {
+      setIsPending(true);
+      getProductCots(debounced)
+        .then((newCost) => {
+          setCost(newCost);
+          setIsPending(false)
+        })
+    }
+  }, [debounced]);
 
-    return (
-        <div>
-            <h1>Checkout</h1>
-            <Product onUpdateQuantity={setQuantity}/>
-            <hr/>
-            <Total cost={cost} isPending={isPending}/>
-        </div>
-    );
+  return (
+    <div>
+      <h1>Checkout</h1>
+      <Product onUpdateQuantity={setQuantity}/>
+      <hr/>
+      <Total cost={cost} isPending={isPending}/>
+    </div>
+  );
 }
 
