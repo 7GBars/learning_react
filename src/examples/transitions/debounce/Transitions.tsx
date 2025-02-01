@@ -2,7 +2,8 @@ import React, {useEffect, useState, useTransition} from 'react';
 import {Product} from "./Product";
 import {getProductCots} from "./api";
 import {Total} from "./Total";
-import {useDebounce} from "./useDebounce/useDebounce";
+import {useDebounce} from "../../../hooks";
+
 
 
 type TTransitionsProps = {}
