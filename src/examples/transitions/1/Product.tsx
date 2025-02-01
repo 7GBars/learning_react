@@ -1,10 +1,11 @@
-import React from 'react';
+  import React from 'react';
 
 type TProductProps = {
-  onUpdateQuantity: (quantity: number) => Promise<void>;
+  onUpdateQuantity: any
+  isPending: boolean;
 }
 
-export const Product: React.FC<TProductProps> = ({onUpdateQuantity}) => {
+export const Product: React.FC<TProductProps> = ({onUpdateQuantity, isPending}) => {
   const handleChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     await onUpdateQuantity(parseInt(e.target.value, 10));
   }
@@ -14,6 +15,7 @@ export const Product: React.FC<TProductProps> = ({onUpdateQuantity}) => {
       <label htmlFor="name">Quantity: </label>
       <input
         type="number"
+        disabled={isPending}
         onChange={handleChange}
         defaultValue={1}
         min={1}
