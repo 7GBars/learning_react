@@ -1,14 +1,14 @@
 import React, {useEffect, useState, useTransition} from 'react';
+
 import {Product} from "./Product";
 import {getProductCots} from "./api";
 import {Total} from "./Total";
 import {useDebounce} from "../../../hooks";
 
 
+type TDebounceProps = {}
 
-type TTransitionsProps = {}
-
-export const Transitions: React.FC<TTransitionsProps> = ({}) => {
+export const Debounce: React.FC<TDebounceProps> = ({}) => {
   const [isPending, setIsPending] = useState(false);
   const [quantity, setQuantity] = useState(1);
   const [cost, setCost] = useState(quantity * 4);

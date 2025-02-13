@@ -2,20 +2,17 @@ import React from 'react';
 
 import './App.css';
 import { AsyncBatchingTest } from "./examples";
-import { Transitions } from "./examples/transitions/debounce/Transitions";
-import {
-  Transition1
-} from "./examples/transitions/The difference between Actions and regular event handling/Transition1";
+import { Debounce } from "./examples/transitions/debounce/Transitions";
+
+import {SearchWithTransition} from "./examples/transitions/searching";
 
 function App() {
 
   return (
     <div className="App">
       <AsyncBatchingTest/>
-
-      <Transition1/>
-
-      <Transitions/>
+      <Debounce/>
+      <SearchWithTransition/>
     </div>
   );
 }
