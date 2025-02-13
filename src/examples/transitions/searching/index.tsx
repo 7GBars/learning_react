@@ -20,7 +20,7 @@ export const SearchWithTransition: FC<TSearchingProps> = ({}) => {
     <>
       <input type={'text'} onChange={makeSearch} />
       <p>{text}</p> {isPending ? <>Loading...</> : null}
-      <ul>
+      <ul style={{display: isPending ? 'none' : 'block'}}>
         {searchResult.map(t => <li>{t}</li>)}
       </ul>
     </>
