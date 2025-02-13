@@ -11,7 +11,7 @@ export const SearchWithTransition: FC<TSearchingProps> = ({}) => {
     const value = e.target.value;
     setText(value);
     startTransition(() => {
-      const searchValue = Array(40000).fill(`text__${value.at(-1)}`)
+      const searchValue = Array(30000).fill(`text__${value.at(-1)}`)
       setSearchResult(searchValue);
     })
   }
