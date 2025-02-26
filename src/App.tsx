@@ -11,6 +11,7 @@ import {SearchWithTransition} from "./examples/transitions/searching";
 import "primereact/resources/themes/lara-light-cyan/theme.css";
 import { Button } from "primereact/button";
 import { treeData } from "./__mocks__/treeData";
+import withLogger from "./HOC/withLogger";
 
 
 function App() {
@@ -29,5 +30,5 @@ function App() {
     </div>
   );
 }
+export const AppWithLogger = withLogger(App);
 
-export default App;
