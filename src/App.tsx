@@ -1,10 +1,7 @@
 import React from 'react';
 
 import './App.css';
-import { AsyncBatchingTest } from "./examples";
-import { Debounce } from "./examples/transitions/debounce/Transitions";
 
-import {SearchWithTransition} from "./examples/transitions/searching";
 import {TabPanel} from "@/examples";
 
 function App() {
