@@ -10,6 +10,7 @@
     "@types/node": "^16.18.105",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
+    "primereact": "^10.9.2",
     "react": "beta",
     "react-dom": "beta",
     "react-scripts": "5.0.1",
