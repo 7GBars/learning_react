@@ -8,10 +8,9 @@ function App() {
 
   return (
     <div className="App">
-      <TabPanel onTabChange={(id) => console.log(id)}>
-        as
-        <TabPanel.Tab tabId={'1'} label={'Test'}>Tab 1</TabPanel.Tab>
-        <TabPanel.Tab tabId={'1'} label={'Test'}>Tab 2</TabPanel.Tab>
+      <TabPanel>
+        <TabPanel.Tab tabId={'1'} label={'Tab1'}>Tab1</TabPanel.Tab>
+        <TabPanel.Tab tabId={'2'} label={'Tab2'}>Tab2</TabPanel.Tab>
       </TabPanel>
     </div>
   );
