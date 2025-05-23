@@ -7,7 +7,9 @@ import { UserProvidersContainer } from "./providers";
 
 import './index.css';
 
-const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement, {
+const mainContainer = document.getElementById('root');
+
+const root = ReactDOM.createRoot(mainContainer as HTMLElement, {
   identifierPrefix: 'test-for-useId'
 });
 
@@ -19,8 +21,4 @@ root.render(
 
 // root.unmount(); - может использоваться при микрофронтах
 
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
