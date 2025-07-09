@@ -1,19 +1,46 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
+import { Button } from "primereact/button";
 
 import './App.css';
+import {
+  type IWrappedTree, WrappedTree,
+  AsyncBatchingTest,
+} from "./examples";
+import { Debounce } from "./examples/transitions/debounce/Transitions";
+import {SearchWithTransition} from "./examples/transitions/searching";
+import { treeData } from "./__mocks__/treeData";
+import withLogger from "./HOC/withLogger";
+import { useEffectWithDepsChangeCheck } from "./hooks";
 
-import {TabPanel} from "@/examples";
+import "primereact/resources/themes/lara-light-cyan/theme.css";
+
 
 function App() {
+  const [count, setCount] = useState<number>(0);
+  const [text, setText] = useState<string>('');
+  const [objectValue, setObjectValue] = useState<{name: string}>({name: 'As'});
 
+  useEffectWithDepsChangeCheck((changes: any) => {
+    console.log(changes)
+  }, {count, text, objectValue});
+
+  const treeRef = useRef<IWrappedTree>(null);
   return (
     <div className="App">
-      <TabPanel>
-        <TabPanel.Tab tabId={'1'} label={'Tab1'}>Tab1</TabPanel.Tab>
-        <TabPanel.Tab tabId={'2'} label={'Tab2'}>Tab2</TabPanel.Tab>
-      </TabPanel>
+      <AsyncBatchingTest/>
+      <Debounce/>
+      <SearchWithTransition/>
+      <WrappedTree ref={treeRef} value={treeData}/>
+
+      <Button onClick={() => {
+        setCount(p => ++p)
+      }}>count</Button>
+
+      <Button onClick={() => setObjectValue({name: 'As'})}>changeObject</Button>
+
+      <input value={text} onChange={e => setText(e.target.value)}/>
     </div>
   );
 }
+export const AppWithLogger = withLogger(App);
 
-export default App;

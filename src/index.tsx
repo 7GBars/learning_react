@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 
-import App from './App';
+import { AppWithLogger } from './App';
 import reportWebVitals from './reportWebVitals';
 import { UserProvidersContainer } from "./providers";
 
@@ -15,7 +15,7 @@ const root = ReactDOM.createRoot(mainContainer as HTMLElement, {
 
 root.render(
     <UserProvidersContainer>
-      <App />
+      <AppWithLogger />
     </UserProvidersContainer>
 );
 
