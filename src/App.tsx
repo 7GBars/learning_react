@@ -13,7 +13,8 @@ import withLogger from "./HOC/withLogger";
 import { useEffectWithDepsChangeCheck } from "./hooks";
 
 import "primereact/resources/themes/lara-light-cyan/theme.css";
-import {PortalWithJSX} from "@/examples/portal";
+import {PortalWithChildren, PortalWithJSX} from "@/examples/portal";
+import {PortalContent} from "@/examples/portal/portalContent";
 
 
 function App() {
@@ -28,7 +29,7 @@ function App() {
   const treeRef = useRef<IWrappedTree>(null);
   return (
     <div className="App">
-      <PortalWithJSX/>
+      <PortalWithChildren ><PortalContent /></PortalWithChildren>
     </div>
   );
 }
