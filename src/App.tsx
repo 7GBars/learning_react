@@ -13,6 +13,7 @@ import withLogger from "./HOC/withLogger";
 import { useEffectWithDepsChangeCheck } from "./hooks";
 
 import "primereact/resources/themes/lara-light-cyan/theme.css";
+import {PortalWithJSX} from "@/examples/portal";
 
 
 function App() {
@@ -27,18 +28,7 @@ function App() {
   const treeRef = useRef<IWrappedTree>(null);
   return (
     <div className="App">
-      <AsyncBatchingTest/>
-      <Debounce/>
-      <SearchWithTransition/>
-      <WrappedTree ref={treeRef} value={treeData}/>
-
-      <Button onClick={() => {
-        setCount(p => ++p)
-      }}>count</Button>
-
-      <Button onClick={() => setObjectValue({name: 'As'})}>changeObject</Button>
-
-      <input value={text} onChange={e => setText(e.target.value)}/>
+      <PortalWithJSX/>
     </div>
   );
 }
