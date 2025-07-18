@@ -1,14 +1,17 @@
-import React from 'react';
+import React, {PropsWithChildren} from 'react';
 
 import './index.scss'
+import {Button} from "primereact/button";
 
-type TPortalContentProps = {}
+type TPortalContainerProps = PropsWithChildren<{
+  setOpen?: React.Dispatch<React.SetStateAction<boolean>>;
+}>
 
-export const PortalContent: React.FC<TPortalContentProps> = ({}) => {
+export const PortalContainer: React.FC<TPortalContainerProps> = ({children, setOpen}) => {
   return (
     <div className={'portal-content-container'}>
-      <div>as</div>
-      <div>Lorem ipsum dolor sit amet, consecteturfam maiores molestias, nihil quo, sunt tempore veniam.</div>
+      {children}
+      <Button  onClick={() => setOpen && setOpen(p => !p)}>Open portal modal </Button>
     </div>
   );
 }
