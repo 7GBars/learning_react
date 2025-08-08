@@ -10,7 +10,7 @@ import { Debounce } from "./examples/transitions/debounce/Transitions";
 import {SearchWithTransition} from "./examples/transitions/searching";
 import { treeData } from "./__mocks__/treeData";
 import withLogger from "./HOC/withLogger";
-import { useEffectWithDepsChangeCheck } from "./hooks";
+import {TransitionWebDevSimplified, useEffectWithDepsChangeCheck} from "./hooks";
 
 import "primereact/resources/themes/lara-light-cyan/theme.css";
 import {PortalWithChildren, PortalWithJSX} from "@/examples/portal";
@@ -29,7 +29,7 @@ function App() {
   const treeRef = useRef<IWrappedTree>(null);
   return (
     <div className="App">
-      <PortalWithChildren ><PortalContent /></PortalWithChildren>
+      <TransitionWebDevSimplified />
     </div>
   );
 }
