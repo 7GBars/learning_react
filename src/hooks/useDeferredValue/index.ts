@@ -1,1 +1,1 @@
-export * from './BigList'
+export * from './BigText'

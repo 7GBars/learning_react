@@ -1,5 +1,5 @@
 import React, {useTransition, type ChangeEvent, useEffect} from 'react';
-import {BigText} from "@/hooks/useDeferredValue/BigList/List";
+import {BigText} from "@/hooks/useDeferredValue/BigText/Text";
 
 type TDeferredValueBigListProps = {}
 
