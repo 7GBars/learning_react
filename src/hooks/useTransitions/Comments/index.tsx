@@ -10,7 +10,7 @@ export const CommentsBlock: React.FC<TCommentsBlockProps> = ({}) => {
 
   const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
     startTransition(() => {
-      setSearch(e.target.value);
+      setSearch(e.target.value); //todo - тут должно быть filterBySearch
     })
   }
 

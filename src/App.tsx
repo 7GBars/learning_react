@@ -30,7 +30,9 @@ function App() {
   return (
     <div className="App">
  
-      <CommentsBlock />
+      {/*<CommentsBlock />*/}
+
+      <DeferredValueBigList/>
     </div>
   );
 }

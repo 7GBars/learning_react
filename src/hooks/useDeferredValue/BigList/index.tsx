@@ -1,5 +1,5 @@
 import React, {useTransition, type ChangeEvent, useEffect} from 'react';
-import {BigList} from "@/hooks/useDeferredValue/BigList/List";
+import {BigText} from "@/hooks/useDeferredValue/BigList/List";
 
 type TDeferredValueBigListProps = {}
 
@@ -9,7 +9,7 @@ export const DeferredValueBigList: React.FC<TDeferredValueBigListProps> = ({}) =
   return (
     <>
       <input typeof={'text'} value={inputValue} onChange={e => setInputValue(e.target.value)}/>
-      <BigList inputValue={inputValue} />
+      <BigText inputValue={inputValue} />
     </>
   );
 }

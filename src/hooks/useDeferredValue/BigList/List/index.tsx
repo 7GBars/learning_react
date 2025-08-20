@@ -2,7 +2,7 @@ import React, {useDeferredValue, useEffect, useMemo} from 'react';
 
 type TBigListProps = { inputValue: string }
 
-export const BigList: React.FC<TBigListProps> = ({inputValue}) => {
+export const BigText: React.FC<TBigListProps> = ({inputValue}) => {
   const deferredInputValue = useDeferredValue(inputValue);
   const list = useMemo(() => {
     const LIST_SIZE = Math.floor(Math.random() * 1001) + 20000;
