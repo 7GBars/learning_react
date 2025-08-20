@@ -3,7 +3,7 @@ import {BigText} from "@/hooks/useDeferredValue/BigText/Text";
 
 type TDeferredValueBigListProps = {}
 
-export const DeferredValueBigList: React.FC<TDeferredValueBigListProps> = ({}) => {
+export const DeferredValueBigText: React.FC<TDeferredValueBigListProps> = ({}) => {
   const [inputValue, setInputValue] = React.useState('');
 
   return (
