@@ -34,7 +34,7 @@ function App() {
     console.log(changes)
   }, {count, text, objectValue});
 
-  const treeRef = useRef<IWrappedTree>(null);
+
   return (
     <div className="App">
  
