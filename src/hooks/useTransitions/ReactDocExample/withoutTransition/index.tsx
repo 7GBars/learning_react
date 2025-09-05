@@ -2,6 +2,7 @@ import { useState, ChangeEvent } from "react";
 
 // Типы для пропсов компонентов
 type ItemProps = {
+  isPending: boolean;
   onUpdateQuantity: (newQuantity: number) => Promise<void>;
 };
 
@@ -20,7 +21,7 @@ export async function updateQuantity(newQuantity: number): Promise<number> {
 }
 
 // Компонент Item
-function Item({ onUpdateQuantity }: ItemProps) {
+function Item({ onUpdateQuantity, isPending }: ItemProps) {
   function handleChange(event: ChangeEvent<HTMLInputElement>) {
     const value = parseInt(event.target.value, 10);
     if (!isNaN(value)) {
@@ -33,6 +34,7 @@ function Item({ onUpdateQuantity }: ItemProps) {
       <span>Eras Tour Tickets</span>
       <label htmlFor="quantity">Quantity: </label>
       <input
+        disabled={isPending}
         id="quantity"
         type="number"
         onChange={handleChange}
@@ -78,7 +80,7 @@ export function ExampleWithOutTransition() {
   return (
     <div>
       <h1>Checkout</h1>
-      <Item onUpdateQuantity={onUpdateQuantity} />
+      <Item isPending={isPending} onUpdateQuantity={onUpdateQuantity} />
       <hr />
       <Total quantity={quantity} isPending={isPending} />
     </div>
