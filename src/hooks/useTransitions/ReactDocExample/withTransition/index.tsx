@@ -1,4 +1,4 @@
-import { useState, ChangeEvent } from "react";
+import { useState, ChangeEvent, useTransition } from "react";
 
 // Типы для пропсов компонентов
 type ItemProps = {
@@ -34,7 +34,7 @@ function Item({ onUpdateQuantity, isPending }: ItemProps) {
       <span>Eras Tour Tickets</span>
       <label htmlFor="quantity">Quantity: </label>
       <input
-        disabled={isPending}
+
         id="quantity"
         type="number"
         onChange={handleChange}
@@ -63,24 +63,25 @@ function Total({ quantity, isPending }: TotalProps) {
 }
 
 // Основной компонент App
-export function ExampleWithOutTransition() {
+export function ExampleWithTransition() {
   const [quantity, setQuantity] = useState(1);
-  const [isPending, setIsPending] = useState(false);
+  const [isPending, startTransition] = useTransition();
 
-  const onUpdateQuantity = async (newQuantity: number) => {
-    setIsPending(true);
-    try {
+  const updateQuantityAction = async newQuantity => {
+    // To access the pending state of a transition,
+    // call startTransition again.
+    startTransition(async () => {
       const savedQuantity = await updateQuantity(newQuantity);
-      setQuantity(savedQuantity);
-    } finally {
-      setIsPending(false);
-    }
+      startTransition(() => {
+        setQuantity(savedQuantity);
+      });
+    });
   };
 
   return (
     <div>
-      <h1>Without transition</h1>
-      <Item isPending={isPending} onUpdateQuantity={onUpdateQuantity} />
+      <h1>With transition</h1>
+      <Item onUpdateQuantity={updateQuantityAction} />
       <hr />
       <Total quantity={quantity} isPending={isPending} />
     </div>

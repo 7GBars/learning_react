@@ -22,6 +22,7 @@ import "primereact/resources/themes/lara-light-cyan/theme.css";
 import {PortalWithChildren, PortalWithJSX} from "@/examples/portal";
 import {PortalContent} from "@/examples/portal/portalContent";
 import { ExampleWithOutTransition } from "@/hooks/useTransitions/ReactDocExample";
+import { ExampleWithTransition } from "@/hooks/useTransitions/ReactDocExample/withTransition";
 
 
 function App() {
@@ -40,6 +41,8 @@ function App() {
       {/*<CommentsBlock />*/}
 
       <ExampleWithOutTransition />
+
+      <ExampleWithTransition />
     </div>
   );
 }
