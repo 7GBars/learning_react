@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 
 import { AppWithLogger } from './App';
-import reportWebVitals from './reportWebVitals';
+
 import { UserProvidersContainer } from "./providers";
 
 import './index.css';
@@ -21,4 +21,4 @@ root.render(
 
 // root.unmount(); - может использоваться при микрофронтах
 
-reportWebVitals();
+

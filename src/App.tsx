@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { Button } from "primereact/button";
+
 
 import './App.css';
 import {
@@ -21,6 +21,7 @@ import {
 import "primereact/resources/themes/lara-light-cyan/theme.css";
 import {PortalWithChildren, PortalWithJSX} from "@/examples/portal";
 import {PortalContent} from "@/examples/portal/portalContent";
+import { ExampleWithOutTransition } from "@/hooks/useTransitions/ReactDocExample";
 
 
 function App() {
@@ -38,7 +39,7 @@ function App() {
  
       {/*<CommentsBlock />*/}
 
-      <DeferredValueBigList/>
+      <ExampleWithOutTransition />
     </div>
   );
 }
