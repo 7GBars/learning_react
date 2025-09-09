@@ -23,6 +23,7 @@ import {PortalWithChildren, PortalWithJSX} from "@/examples/portal";
 import {PortalContent} from "@/examples/portal/portalContent";
 import { ExampleWithOutTransition } from "@/hooks/useTransitions/ReactDocExample";
 import { ExampleWithTransition } from "@/hooks/useTransitions/ReactDocExample/withTransition";
+import TabContainer from "@/hooks/useTransitions/ReactDocExample/actionAsProp";
 
 
 function App() {
@@ -43,6 +44,8 @@ function App() {
       <ExampleWithOutTransition />
 
       <ExampleWithTransition />
+
+      <TabContainer/>
     </div>
   );
 }
