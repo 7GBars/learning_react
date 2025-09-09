@@ -90,7 +90,7 @@ function SlowPost({ index }: SlowPostProps) {
 const PostsTab: NamedExoticComponent<{}> = memo((props: {}) => {
   console.log('[ARTIFICIALLY SLOW] Rendering 500 <SlowPost />');
 
-  let items: JSX.Element[] = [];
+  let items = [];
   for (let i = 0; i < 500; i++) {
     items.push(<SlowPost key={i} index={i} />);
   }
