@@ -1,1 +1,3 @@
-export * as UI from './UI';
+export * from './theme'
+
+export * as UI from './UI'
