@@ -1,11 +1,11 @@
-import { useState, memo, Suspense,  ExoticComponent } from 'react';
+import { useState, memo, Suspense, ExoticComponent, use } from 'react';
 
 
 export default function TabContainer() {
-  const [tab, setTab] = useState<'about' | 'posts' | 'contact'>('about');
+  const [tab, setTab] = useState<'about' | 'posts' | 'contact'>('contact');
 
   return (
-    <Suspense fallback={'Loading...'}>
+    <>
       <TabButton
         isActive={tab === 'about'}
         action={() => setTab('about')}
@@ -24,17 +24,22 @@ export default function TabContainer() {
       >
         Contact
       </TabButton>
-      <hr />
-      {tab === 'about' && <AboutTab />}
-      {tab === 'posts' && <PostsTab />}
-      {tab === 'contact' && <ContactTab />}
-    </Suspense>
+      <hr/>
+
+      <Suspense fallback={'Loading...'}>
+        {tab === 'about' && <AboutTab/>}
+        {tab === 'posts' && <PostsTab/>}
+        {tab === 'contact' && <ContactTab/>}
+      </Suspense>
+    </>
+
   );
 }
 
 import { useTransition, ReactNode } from 'react';
 import { getThemeContext, useTheme } from "@/providers/theme/useTheme";
-import { ThemeContext } from "@/providers/theme/ThemeContext";
+
+import { apiCache, fetchPosts } from "@/service";
 
 interface TabButtonProps {
   action: () => void | Promise<void>;
@@ -65,11 +70,12 @@ function TabButton({ action, children, isActive }: TabButtonProps) {
 }
 
 function AboutTab() {
+  const posts = use(apiCache.get('posts', fetchPosts));
+
   return (
     <p>Welcome to my profile!</p>
   );
 }
-
 
 
 interface SlowPostProps {
@@ -93,8 +99,8 @@ const PostsTab: ExoticComponent<{}> = memo(({}) => {
   console.log('[ARTIFICIALLY SLOW] Rendering 500 <SlowPost />');
   const { theme } = getThemeContext()
   let items = [];
-  for (let i = 0; i < 500; i++) {
-    items.push(<SlowPost key={i} index={i} />);
+  for(let i = 0; i < 500; i++) {
+    items.push(<SlowPost key={i} index={i}/>);
   }
 
   return (
