@@ -1,4 +1,4 @@
-import { useState, memo, FC, NamedExoticComponent, Suspense, use, ExoticComponent } from 'react';
+import { useState, memo, Suspense,  ExoticComponent } from 'react';
 
 
 export default function TabContainer() {
@@ -33,7 +33,7 @@ export default function TabContainer() {
 }
 
 import { useTransition, ReactNode } from 'react';
-import { useTheme } from "@/providers/theme/useTheme";
+import { getThemeContext, useTheme } from "@/providers/theme/useTheme";
 import { ThemeContext } from "@/providers/theme/ThemeContext";
 
 interface TabButtonProps {
@@ -91,13 +91,7 @@ function SlowPost({ index }: SlowPostProps) {
 
 const PostsTab: ExoticComponent<{}> = memo(({}) => {
   console.log('[ARTIFICIALLY SLOW] Rendering 500 <SlowPost />');
-  const { theme } = useTheme();
-  const context = use(ThemeContext);
-
-
-  console.log('context', context);
-
-  debugger
+  const { theme } = getThemeContext()
   let items = [];
   for (let i = 0; i < 500; i++) {
     items.push(<SlowPost key={i} index={i} />);
