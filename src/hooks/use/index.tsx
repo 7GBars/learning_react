@@ -14,18 +14,13 @@ function fetchUserProfile() {
     }, 2000); // Имитация задержки 2 сек
   });
 }
-
+const userProfilePromise = fetchUserProfile();
 // ============ КОМПОНЕНТ, ИСПОЛЬЗУЮЩИЙ use() ============
 const UserProfile = () => {
-  // ✅ use() приостанавливает компонент, пока промис не разрешится
-  const promiseRef = useRef<Promise<{ name: string; email: string; role: string }> | null>(null);
 
-  if (!promiseRef.current) {
-    promiseRef.current = fetchUserProfile();
-  }
 
   // ✅ Теперь use() получает один и тот же промис
-  const user = use(promiseRef.current);
+  const user = use(userProfilePromise);
 
   return (
     <div className="user-profile">
