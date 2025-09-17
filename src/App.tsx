@@ -15,7 +15,7 @@ import {
   DeferredValueBigList,
   DeferredValueBigText,
   TransitionWebDevSimplified,
-  useEffectWithDepsChangeCheck
+  useEffectWithDepsChangeCheck, UseWithPromise
 } from "./hooks";
 
 import "primereact/resources/themes/lara-light-cyan/theme.css";
@@ -38,7 +38,7 @@ function App() {
 
   return (
     <div className="App">
- 
+
       {/*<CommentsBlock />*/}
 
       <ExampleWithOutTransition />
@@ -46,6 +46,8 @@ function App() {
       <ExampleWithTransition />
 
       <TabContainer/>
+
+      <UseWithPromise/>
     </div>
   );
 }
