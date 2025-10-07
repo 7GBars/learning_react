@@ -24,6 +24,7 @@ import {PortalContent} from "@/examples/portal/portalContent";
 import { ExampleWithOutTransition } from "@/hooks/useTransitions/ReactDocExample";
 import { ExampleWithTransition } from "@/hooks/useTransitions/ReactDocExample/withTransition";
 import TabContainer from "@/hooks/useTransitions/ReactDocExample/actionAsProp";
+import { UseStateSimple } from "@/hooks/ReactBuiltInHooks";
 
 
 function App() {
@@ -39,15 +40,7 @@ function App() {
   return (
     <div className="App">
 
-      {/*<CommentsBlock />*/}
-
-      <ExampleWithOutTransition />
-
-      <ExampleWithTransition />
-
-      <TabContainer/>
-
-      <UseWithPromise/>
+     <UseStateSimple />
     </div>
   );
 }
