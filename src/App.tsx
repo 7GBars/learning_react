@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 
-import { RecreatingInitialState } from "@/hooks";
+import { RenderPhaseUpdates, RecreatingInitialState } from "@/hooks";
 
 import { withLogger } from "@/HOC";
 import { useEffectWithDepsChangeCheck } from "./hooks";
@@ -24,7 +24,7 @@ function App() {
   return (
     <div className="App">
       <input type={'number'} onChange={(e) => setCount(+e.target.value)} value={count}/>
-     <RecreatingInitialState key={count}/>
+      <RenderPhaseUpdates count={count}/>
     </div>
   );
 }
