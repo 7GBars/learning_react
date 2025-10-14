@@ -23,8 +23,8 @@ function App() {
 
   return (
     <div className="App">
-
-     <RecreatingInitialState />
+      <input type={'number'} onChange={(e) => setCount(+e.target.value)} value={count}/>
+     <RecreatingInitialState key={count}/>
     </div>
   );
 }

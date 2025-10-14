@@ -6,7 +6,7 @@ interface Todo {
 }
 
 function createInitialTodos(): Todo[] {
-  debugger
+  // debugger
   const initialTodos: Todo[] = [];
   for (let i = 0; i < 50; i++) {
     initialTodos.push({
