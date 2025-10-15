@@ -10,6 +10,7 @@ import { useEffectWithDepsChangeCheck } from "./hooks";
 
 import "primereact/resources/themes/lara-light-cyan/theme.css";
 import './App.css';
+import { FunctionToState } from "@/hooks/ReactBuiltInHooks/stateHooks/useState/FunctionToState";
 
 function App() {
   const [count, setCount] = useState<number>(0);
@@ -24,7 +25,7 @@ function App() {
   return (
     <div className="App">
       <input type={'number'} onChange={(e) => setCount(+e.target.value)} value={count}/>
-      <TooManyRenders />
+      <FunctionToState />
     </div>
   );
 }
