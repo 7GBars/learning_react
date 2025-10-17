@@ -7,8 +7,8 @@ type State = {
 };
 
 type Action =
-  | { type: 'increment' }
-  | { type: 'decrement' };
+  | { type: typeof ACTIONS.INCREMENT }
+  | { type: typeof ACTIONS.DECREMENT };
 
 export const SimpleUseReducer: React.FC<TSimpleUseReducerProps> = ({}) => {
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -16,12 +16,12 @@ export const SimpleUseReducer: React.FC<TSimpleUseReducerProps> = ({}) => {
     <>
       <button onClick={() => {
         //ts-ignore
-        dispatch()
+        dispatch({ type: ACTIONS.DECREMENT })
       }}>-
       </button>
       <button onClick={() => {
         //ts-ignore
-        dispatch()
+        dispatch({ type: ACTIONS.INCREMENT })
       }}>+
       </button>
       <span>{state.count}</span>
@@ -30,10 +30,23 @@ export const SimpleUseReducer: React.FC<TSimpleUseReducerProps> = ({}) => {
 }
 
 const reducer = (state: State, action: Action) => {
-  return { count: state.count + 1 }
+  switch (action.type) {
+    case ACTIONS.INCREMENT: {
+      return { count: state.count + 1 }
+    }
+    case ACTIONS.DECREMENT: {
+      return { count: state.count - 1 }
+    }
+    default:
+      return state;
+  }
 }
 
 const initialState: State = {
   count: 0
 }
 
+const ACTIONS = {
+  INCREMENT: 'increment',
+  DECREMENT: 'decrement',
+} as const;
