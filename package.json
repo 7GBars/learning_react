@@ -4,6 +4,7 @@
   "private": true,
   "type": "module",
   "dependencies": {
+    "nanoid": "^5.1.6",
     "primereact": "^10.9.7",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
