@@ -1,15 +1,10 @@
 import React, { FormEvent, useCallback, useId, useMemo, useReducer, useState } from 'react';
 import { nanoid } from 'nanoid';
 
-type TTodoListUseReducerProps = {}
+import './styles/index.scss'
 
-type State = Array<Todo>;
 
-type Action =
-  | { type: typeof ACTIONS.ADD, payload: { id: string, name: string, created: Date } }
-  | { type: typeof ACTIONS.DELETE, payload: { id: string } }
-  | { type: typeof ACTIONS.TOGGLE, payload: { id: string } };
-
+//region ==================== Components ====================
 export const TodoListUseReducer: React.FC<TTodoListUseReducerProps> = ({}) => {
 
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -17,14 +12,18 @@ export const TodoListUseReducer: React.FC<TTodoListUseReducerProps> = ({}) => {
 
   const handleSubmit = useCallback((e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
     console.log('name', name)
     dispatch({type: ACTIONS.ADD, payload: {name, id: nanoid(), created: new Date() }})
     setName('');
   }, [name]);
 
   const todos = useMemo(() => {
-    return state.map(t => <div>{t.name}</div>)
+    return state.map(t => <Todo
+      key={t.id}
+      todo={t}
+      onToggle={(data) => console.log('change', data)}
+      onDelete={() => console.log('delete')}
+    />)
   }, [state]);
 
   return (
@@ -38,11 +37,38 @@ export const TodoListUseReducer: React.FC<TTodoListUseReducerProps> = ({}) => {
   );
 }
 
+export const Todo: React.FC<TodoProps> = ({ todo, onToggle, onDelete }) => {
+  return (
+    <div className={`todo ${todo.completed ? 'completed' : ''}`}>
+      <label className="todo-label">
+        <input
+          type="checkbox"
+          checked={todo.completed}
+          onChange={() => onToggle(todo.id)}
+          className="todo-checkbox"
+        />
+        <span className="todo-text">{todo.name}</span>
+      </label>
+      <button
+        type="button"
+        onClick={(e) => {
+          onDelete(todo.id)
+        }}
+        className="todo-delete-btn"
+      >
+        ×
+      </button>
+    </div>
+  );
+};
+//endregion
 
+
+//region ==================== Reducer ====================
 const reducer = (state: State, action: Action) => {
   switch (action.type) {
     case ACTIONS.ADD: {
-      const newTodo: Todo = {...action.payload, status: 'in progress'};
+      const newTodo: Todo = {...action.payload, completed: false};
       return [...state, newTodo]
     }
 
@@ -58,11 +84,33 @@ const ACTIONS = {
   TOGGLE: 'toggle',
   DELETE: 'delete',
 } as const;
+//endregion
+
+
+//region ==================== TYPES ====================
+type TTodoListUseReducerProps = {}
+
+type State = Array<Todo>;
+
+type Action =
+  | { type: typeof ACTIONS.ADD, payload: { id: string, name: string, created: Date } }
+  | { type: typeof ACTIONS.DELETE, payload: { id: string } }
+  | { type: typeof ACTIONS.TOGGLE, payload: { id: string } };
+
+
+
+
+interface TodoProps {
+  todo: Todo;
+  onToggle: (id: string) => void;
+  onDelete: (id: string) => void;
+}
 
 type Todo = {
   id: string;
   name: string;
   created: Date;
-  status: Status;
+  completed: boolean;
 }
-type Status = 'new' | 'in progress' | 'completed'
+
+//endregion
