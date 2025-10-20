@@ -8,7 +8,7 @@ type State = Array<Todo>;
 type Action =
   | { type: typeof ACTIONS.ADD, payload: { id: string, name: string, created: Date } }
   | { type: typeof ACTIONS.DELETE, payload: { id: string } }
-  | { type: typeof ACTIONS.GET_IN_WORK, payload: { id: string } };
+  | { type: typeof ACTIONS.TOGGLE, payload: { id: string } };
 
 export const TodoListUseReducer: React.FC<TTodoListUseReducerProps> = ({}) => {
 
@@ -55,7 +55,7 @@ const initialState: State = []
 
 const ACTIONS = {
   ADD: 'add',
-  GET_IN_WORK: 'getInWork',
+  TOGGLE: 'toggle',
   DELETE: 'delete',
 } as const;
 
