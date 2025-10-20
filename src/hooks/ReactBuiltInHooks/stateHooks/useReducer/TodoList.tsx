@@ -12,27 +12,31 @@ export const TodoListUseReducer: React.FC<TTodoListUseReducerProps> = ({}) => {
 
   const handleSubmit = useCallback((e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log('name', name)
     dispatch({type: ACTIONS.ADD, payload: {name, id: nanoid(), created: new Date() }})
     setName('');
   }, [name]);
+
+  const handleDelete = useCallback((id: string) => {
+    dispatch({ type: ACTIONS.DELETE, payload: { id }});
+  }, [])
+  const handleChangeStatus = useCallback((id: string) => {
+    dispatch({ type: ACTIONS.TOGGLE, payload: { id }});
+  }, [])
 
   const todos = useMemo(() => {
     return state.map(t => <Todo
       key={t.id}
       todo={t}
-      onToggle={(data) => console.log('change', data)}
-      onDelete={() => console.log('delete')}
+      onToggle={handleChangeStatus}
+      onDelete={handleDelete}
     />)
   }, [state]);
 
   return (
     <form onSubmit={handleSubmit}>
       <input type={'text'} value={name} onChange={(e) => setName(e.target.value)}/>
-
-      {todos}
-
-      <button type="submit">Add Todo</button>
+        {todos}
+      <button type="submit">Add</button>
     </form>
   );
 }
@@ -51,9 +55,7 @@ export const Todo: React.FC<TodoProps> = ({ todo, onToggle, onDelete }) => {
       </label>
       <button
         type="button"
-        onClick={(e) => {
-          onDelete(todo.id)
-        }}
+        onClick={() => {onDelete(todo.id)}}
         className="todo-delete-btn"
       >
         ×
@@ -65,15 +67,24 @@ export const Todo: React.FC<TodoProps> = ({ todo, onToggle, onDelete }) => {
 
 
 //region ==================== Reducer ====================
-const reducer = (state: State, action: Action) => {
+const reducer = (todos: State, action: Action) => {
   switch (action.type) {
     case ACTIONS.ADD: {
       const newTodo: Todo = {...action.payload, completed: false};
-      return [...state, newTodo]
+      return [...todos, newTodo]
+    }
+    case ACTIONS.TOGGLE: {
+      const newTodos = todos.map(t => {
+        return {...t, completed: t.id === action.payload.id ? !t.completed : t.completed }
+      })
+      return newTodos;
+    }
+    case ACTIONS.DELETE: {
+      const filteredTodos = todos.filter(t => t.id !== action.payload.id);
+      return filteredTodos;
     }
 
-    default:
-      return state;
+    default: return todos;
   }
 }
 
