@@ -88,7 +88,12 @@ const reducer = (todos: State, action: Action) => {
   }
 }
 
-const initialState: State = []
+const initialState: State = [{
+  name: 'Родиться',
+  id: nanoid(),
+  created: new Date(),
+  completed: false
+}]
 
 const ACTIONS = {
   ADD: 'add',
