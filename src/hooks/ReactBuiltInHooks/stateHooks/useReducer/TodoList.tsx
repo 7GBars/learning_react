@@ -7,7 +7,7 @@ import './styles/index.scss'
 //region ==================== Components ====================
 export const TodoListUseReducer: React.FC<TTodoListUseReducerProps> = ({}) => {
 
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const [state, dispatch] = useReducer(reducer, initialState, initFunction);
   const [name, setName] = useState('');
 
   const handleSubmit = useCallback((e: FormEvent<HTMLFormElement>) => {
@@ -93,7 +93,20 @@ const initialState: State = [{
   id: nanoid(),
   created: new Date(),
   completed: false
-}]
+}];
+
+const initFunction = (initArgument: State) => {
+  const birdDay = new Date(1991, 0, 21);
+
+  const firstTask = initArgument && initArgument[0];
+
+  if (firstTask) {
+    firstTask.created > birdDay && (firstTask.completed = true);
+    return [firstTask];
+  } else {
+    return [];
+  }
+}
 
 const ACTIONS = {
   ADD: 'add',
