@@ -39,6 +39,8 @@ export const TodoListUseReducer: React.FC<TTodoListUseReducerProps> = ({}) => {
     />)
   }, [state]);
 
+  //  dispatch({ type: ACTIONS.TOGGLE, payload: { id: '12' }}); // 🚩 как и функцию setState нельзя вызывать dispatch во время рендеринга
+
   return (
     <form onSubmit={handleSubmit}>
       <input type={'text'} value={name} onChange={(e) => setName(e.target.value)}/>
