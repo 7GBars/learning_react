@@ -14,6 +14,13 @@ export const TodoListUseReducer: React.FC<TTodoListUseReducerProps> = ({}) => {
     e.preventDefault();
     dispatch({type: ACTIONS.ADD, payload: {name, id: nanoid(), created: new Date() }})
     setName('');
+
+
+    const newState = reducer(state, {type: ACTIONS.ADD, payload: {name, id: nanoid(), created: new Date() }});
+
+    console.log('после диспатча state обновиться только на следующем рендере', state);
+    console.log('предугодать значение', newState);
+
   }, [name]);
 
   const handleDelete = useCallback((id: string) => {
