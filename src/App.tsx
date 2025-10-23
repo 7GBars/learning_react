@@ -1,31 +1,22 @@
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 
 
-import './App.css';
 import {
-  type IWrappedTree, WrappedTree,
-  AsyncBatchingTest,
-} from "./examples";
-import { Debounce } from "./examples/transitions/debounce/Transitions";
-import {SearchWithTransition} from "./examples/transitions/searching";
-import { treeData } from "./__mocks__/treeData";
-import withLogger from "./HOC/withLogger";
-import {
-  CommentsBlock,
-  DeferredValueBigList,
-  DeferredValueBigText,
-  TransitionWebDevSimplified,
-  useEffectWithDepsChangeCheck, UseWithPromise
-} from "./hooks";
+  RenderPhaseUpdates,
+  RecreatingInitialState,
+  TooManyRenders,
+  SimpleUseReducer,
+  TodoListUseReducer
+} from "@/hooks";
+
+import { withLogger } from "@/HOC";
+import { useEffectWithDepsChangeCheck } from "./hooks";
+
+
 
 import "primereact/resources/themes/lara-light-cyan/theme.css";
-import {PortalWithChildren, PortalWithJSX} from "@/examples/portal";
-import {PortalContent} from "@/examples/portal/portalContent";
-import { ExampleWithOutTransition } from "@/hooks/useTransitions/ReactDocExample";
-import { ExampleWithTransition } from "@/hooks/useTransitions/ReactDocExample/withTransition";
-import TabContainer from "@/hooks/useTransitions/ReactDocExample/actionAsProp";
-import { UseStateSimple } from "@/hooks/ReactBuiltInHooks";
-
+import './App.css';
+import { FunctionToState } from "@/hooks/ReactBuiltInHooks/stateHooks/useState/FunctionToState";
 
 function App() {
   const [count, setCount] = useState<number>(0);
@@ -39,8 +30,8 @@ function App() {
 
   return (
     <div className="App">
-
-     <UseStateSimple />
+      <input type={'number'} onChange={(e) => setCount(+e.target.value)} value={count}/>
+      <TodoListUseReducer />
     </div>
   );
 }

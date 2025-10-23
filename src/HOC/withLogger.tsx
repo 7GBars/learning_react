@@ -1,7 +1,7 @@
 import React, { useEffect, ComponentType } from 'react';
 
 
-const withLogger = <P extends object>(
+export const withLogger = <P extends object>(
   WrappedComponent: ComponentType<P>
 ): ComponentType<P> => {
 
@@ -19,4 +19,4 @@ const withLogger = <P extends object>(
   return ComponentWithLogger;
 };
 
-export default withLogger;
+
