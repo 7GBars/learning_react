@@ -1,23 +1,23 @@
-import { FC, ReactNode } from 'react';
+import {createContext, FC, ReactNode, useContext} from 'react';
 
 
 //#region components
-export const Page: FC = () => {
+export const SectionsContextPage: FC = () => {
   return (
-    <Section>
-      <Heading level={1}>Title</Heading>
-      <Section>
-        <Heading level={2}>Heading</Heading>
-        <Heading level={2}>Heading</Heading>
-        <Heading level={2}>Heading</Heading>
-        <Section>
-          <Heading level={3}>Sub-heading</Heading>
-          <Heading level={3}>Sub-heading</Heading>
-          <Heading level={3}>Sub-heading</Heading>
-          <Section>
-            <Heading level={4}>Sub-sub-heading</Heading>
-            <Heading level={4}>Sub-sub-heading</Heading>
-            <Heading level={4}>Sub-sub-heading</Heading>
+    <Section level={1}>
+      <Heading>Title</Heading>
+      <Section level={2}>
+        <Heading>Heading</Heading>
+        <Heading>Heading</Heading>
+        <Heading>Heading</Heading>
+        <Section level={3}>
+          <Heading>Sub-heading</Heading>
+          <Heading>Sub-heading</Heading>
+          <Heading>Sub-heading</Heading>
+          <Section level={4}>
+            <Heading>Sub-sub-heading</Heading>
+            <Heading>Sub-sub-heading</Heading>
+            <Heading>Sub-sub-heading</Heading>
           </Section>
         </Section>
       </Section>
@@ -33,12 +33,10 @@ export const Section: FC<SectionProps> = ({ children }) => {
   );
 };
 
-interface HeadingProps {
-  level: 1 | 2 | 3 | 4 | 5 | 6;
-  children: ReactNode;
-}
 
-export const Heading: FC<HeadingProps> = ({ level, children }) => {
+
+export const Heading: FC<HeadingProps> = ({  children }) => {
+  const level = useLevelContext()
   switch (level) {
     case 1:
       return <h1>{children}</h1>;
@@ -60,6 +58,19 @@ export const Heading: FC<HeadingProps> = ({ level, children }) => {
 
 //#region types
 interface SectionProps {
+  level: TLevel;
   children: ReactNode;
 }
+interface HeadingProps {
+  children: ReactNode;
+}
+
+
+type TLevel = 1 | 2 | 3 | 4 | 5 | 6;
+//#endregion
+
+//#region context
+const levelContext = createContext<TLevel>(1);
+
+const useLevelContext = () => useContext(levelContext);
 //#endregion
