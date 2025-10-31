@@ -25,10 +25,12 @@ export const SectionsContextPage: FC = () => {
   );
 };
 
-export const Section: FC<SectionProps> = ({ children }) => {
+export const Section: FC<SectionProps> = ({ level, children }) => {
   return (
     <section className="section">
-      {children}
+      <LevelContext value={level}>
+        {children}
+      </LevelContext>
     </section>
   );
 };
@@ -73,7 +75,7 @@ type TLevel = 1 | 2 | 3 | 4 | 5 | 6;
 //#endregion
 
 //#region context
-const levelContext = createContext<TLevel>(1);
+const LevelContext = createContext<TLevel>(1);
 
-const useLevelContext = () => useContext(levelContext);
+const useLevelContext = () => useContext(LevelContext);
 //#endregion
