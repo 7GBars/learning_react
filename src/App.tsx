@@ -1,22 +1,14 @@
 import React, { useState } from 'react';
 
-
-import {
-  RenderPhaseUpdates,
-  RecreatingInitialState,
-  TooManyRenders,
-  SimpleUseReducer,
-  TodoListUseReducer
-} from "@/hooks";
-
 import { withLogger } from "@/HOC";
-import { useEffectWithDepsChangeCheck } from "./hooks";
+import { useEffectWithDepsChangeCheck } from "@/hooks";
 
+import {SectionsContextPage} from "@/_reactDocs";
 
 
 import "primereact/resources/themes/lara-light-cyan/theme.css";
 import './App.css';
-import { FunctionToState } from "@/hooks/ReactBuiltInHooks/stateHooks/useState/FunctionToState";
+
 
 function App() {
   const [count, setCount] = useState<number>(0);
@@ -31,7 +23,7 @@ function App() {
   return (
     <div className="App">
       <input type={'number'} onChange={(e) => setCount(+e.target.value)} value={count}/>
-      <TodoListUseReducer />
+      <SectionsContextPage />
     </div>
   );
 }

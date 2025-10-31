@@ -1,6 +1,6 @@
 import {createContext, FC, ReactNode, useContext} from 'react';
 
-
+import './index.scss'
 //#region components
 export const SectionsContextPage: FC = () => {
   return (
@@ -36,7 +36,10 @@ export const Section: FC<SectionProps> = ({ children }) => {
 
 
 export const Heading: FC<HeadingProps> = ({  children }) => {
-  const level = useLevelContext()
+  const level = useLevelContext();
+
+  console.log('level', level);
+
   switch (level) {
     case 1:
       return <h1>{children}</h1>;

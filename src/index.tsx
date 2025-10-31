@@ -6,6 +6,7 @@ import { AppWithLogger } from './App';
 import { UserProvidersContainer } from "./providers";
 
 import './index.css';
+import './reset.scss';
 
 const mainContainer = document.getElementById('root');
 
