@@ -4,17 +4,17 @@ import './index.scss'
 //#region components
 export const SectionsContextPage: FC = () => {
   return (
-    <Section level={1}>
+    <Section>
       <Heading>Title</Heading>
-      <Section level={2}>
+      <Section>
         <Heading>Heading</Heading>
         <Heading>Heading</Heading>
         <Heading>Heading</Heading>
-        <Section level={3}>
+        <Section>
           <Heading>Sub-heading</Heading>
           <Heading>Sub-heading</Heading>
           <Heading>Sub-heading</Heading>
-          <Section level={4}>
+          <Section>
             <Heading>Sub-sub-heading</Heading>
             <Heading>Sub-sub-heading</Heading>
             <Heading>Sub-sub-heading</Heading>
@@ -26,9 +26,14 @@ export const SectionsContextPage: FC = () => {
 };
 
 export const Section: FC<SectionProps> = ({ level, children }) => {
+  const currentLevel = useLevelContext();
+  level ??= currentLevel;
+
+  const limitedLevel = Math.min(level + 1, 6) as TLevel;
+
   return (
     <section className="section">
-      <LevelContext value={level}>
+      <LevelContext value={limitedLevel}>
         {children}
       </LevelContext>
     </section>
@@ -63,7 +68,7 @@ export const Heading: FC<HeadingProps> = ({  children }) => {
 
 //#region types
 interface SectionProps {
-  level: TLevel;
+  level?: TLevel;
   children: ReactNode;
 }
 interface HeadingProps {
