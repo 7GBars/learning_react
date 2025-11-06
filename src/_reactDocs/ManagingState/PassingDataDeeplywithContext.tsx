@@ -1,6 +1,7 @@
-import {createContext, FC, ReactNode, useContext} from 'react';
-
+import { FC, ReactNode } from 'react';
+import {LevelContext, useLevelContext, type TLevel } from "@/hooks";
 import './index.scss'
+
 //#region components
 export const SectionsContextPage: FC = () => {
   return (
@@ -76,11 +77,5 @@ interface HeadingProps {
 }
 
 
-type TLevel = 1 | 2 | 3 | 4 | 5 | 6;
-//#endregion
 
-//#region context
-const LevelContext = createContext<TLevel>(1);
-
-const useLevelContext = () => useContext(LevelContext);
 //#endregion
