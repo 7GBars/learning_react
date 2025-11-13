@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { withLogger } from "@/HOC";
 import { useEffectWithDepsChangeCheck } from "@/hooks";
 
-import {SectionsContextPage} from "@/_reactDocs";
+import {SectionsContextPage} from "src/learn_react_docs";
 
 
 import "primereact/resources/themes/lara-light-cyan/theme.css";
