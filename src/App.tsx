@@ -1,13 +1,11 @@
 import React, { useState } from 'react';
 
 import { withLogger } from "@/HOC";
-import { useEffectWithDepsChangeCheck } from "@/hooks";
-
-import {SectionsContextPage} from "src/learn_react_docs";
-
+import {SimpleUseRef, useEffectWithDepsChangeCheck} from "@/hooks";
 
 import "primereact/resources/themes/lara-light-cyan/theme.css";
 import './App.css';
+
 
 
 function App() {
@@ -23,7 +21,7 @@ function App() {
   return (
     <div className="App">
       <input type={'number'} onChange={(e) => setCount(+e.target.value)} value={count}/>
-      <SectionsContextPage />
+      <SimpleUseRef />
     </div>
   );
 }
