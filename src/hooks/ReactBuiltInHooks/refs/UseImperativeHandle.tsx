@@ -1,4 +1,4 @@
-import React, {useEffect, useImperativeHandle, useRef} from 'react';
+import React, {forwardRef, useEffect, useId, useImperativeHandle, useRef} from 'react';
 
 type TUseImperativeHandleProps = {ref: any};
 
@@ -25,4 +25,18 @@ export const UseImperativeHandle: React.FC<TUseImperativeHandleProps> = ({ ref }
             <p>UseImperativeHandle expample compoents</p>
         </>
     );
-}
+};
+
+
+type TProps = { name: string};
+type TRef = { componentID: string};
+
+export const ForwardRefWrapped = forwardRef<TRef,TProps>((props, ref) => {
+    const id = useId();
+
+    useImperativeHandle(ref, () => {
+        return {componentID: id}
+    }, [id]);
+
+    return <>ForwardRefExample</>
+})
