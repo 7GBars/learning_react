@@ -48,23 +48,23 @@ export const SimpleUseRef: FC<TSimpleUseRefProps> = ({}) => {
 export const Stopwatch: FC<{}> = () => {
   const [startTime, setStartTime] = useState<number | null>(null);
   const [now, setNow] = useState<number | null>(null);
-  const intervalId = useRef<number | null>(null);
+  const intervalIdRef = useRef<number | null>(null);
 
   let secondPassed = 0;
 
   const handleStart = () => {
     setStartTime(Date.now());
     setNow(Date.now());
-
-    intervalId.current = window.setInterval(() => {
+    intervalIdRef.current && clearInterval(intervalIdRef.current);
+    intervalIdRef.current = window.setInterval(() => {
       setNow(Date.now());
-    }, 1000);
+    }, 10);
 
   };
 
   const handleStop = () => {
-    intervalId.current && clearInterval(intervalId.current);
-    intervalId.current = null;
+    intervalIdRef.current && clearInterval(intervalIdRef.current);
+    intervalIdRef.current = null;
   }
 
   if (now && startTime) {
