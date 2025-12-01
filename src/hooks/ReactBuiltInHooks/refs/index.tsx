@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, type FC } from 'react';
+import { useEffect, useRef, useState, type FC, type Ref } from 'react';
 import { UseImperativeHandle } from "@/hooks/ReactBuiltInHooks/refs/UseImperativeHandle";
 import { Button } from "primereact/button";
 
@@ -78,5 +78,20 @@ export const Stopwatch: FC<{}> = () => {
     <Button onClick={handleStop}> stop</Button>
   </>
 }
+
+interface ButtonWithoutForwardRefProps {
+  ref?: Ref<HTMLButtonElement>;
+  // другие пропсы
+  children: React.ReactNode;
+  onClick?: () => void;
+}
+
+export const ButtonWithoutForwardRef: FC<ButtonWithoutForwardRefProps> = ({ ref, children, onClick }) => {
+  return (
+      <button ref={ref} onClick={onClick}>
+        {children}
+      </button>
+  );
+};
 
 export * from './UseImperativeHandle';

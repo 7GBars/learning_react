@@ -1,7 +1,13 @@
 import React, {useRef, useState} from 'react';
 
 import { withLogger } from "@/HOC";
-import { SimpleUseRef, Stopwatch, useEffectWithDepsChangeCheck, UseImperativeHandleWithDeps } from "@/hooks";
+import {
+  ButtonWithoutForwardRef,
+  SimpleUseRef,
+  Stopwatch,
+  useEffectWithDepsChangeCheck,
+  UseImperativeHandleWithDeps
+} from "@/hooks";
 
 import "primereact/resources/themes/lara-light-cyan/theme.css";
 import './App.css';
@@ -28,7 +34,10 @@ function App() {
         console.log('demoRef', demoRef);
       }}>log data</button>
 
-      <UseImperativeHandleWithDeps name={'test'} ref={demoRef}/>
+      <ButtonWithoutForwardRef
+          ref={demoRef}
+          onClick={() => console.log(demoRef)}
+      >Без ФорвардРефа</ButtonWithoutForwardRef>
     </div>
   );
 }
