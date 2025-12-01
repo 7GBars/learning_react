@@ -30,7 +30,7 @@ export const SimpleUseRef: FC<TSimpleUseRefProps> = ({}) => {
     <>
       <br/>
       <input type={'number'} onChange={(e) => setCount(+e.target.value)} value={count}/>
-      <UseImperativeHandle ref={refForChildrenComponent}/>
+      <UseImperativeHandle refAsProps={refForChildrenComponent}/>
 
       <Button onClick={() => {
         console.log('simpleRef', simpleRef);
@@ -78,3 +78,5 @@ export const Stopwatch: FC<{}> = () => {
     <Button onClick={handleStop}> stop</Button>
   </>
 }
+
+export * from './UseImperativeHandle';

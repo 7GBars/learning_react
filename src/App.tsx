@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, {useRef, useState} from 'react';
 
 import { withLogger } from "@/HOC";
-import { SimpleUseRef, Stopwatch, useEffectWithDepsChangeCheck } from "@/hooks";
+import { SimpleUseRef, Stopwatch, useEffectWithDepsChangeCheck, UseImperativeHandleWithDeps } from "@/hooks";
 
 import "primereact/resources/themes/lara-light-cyan/theme.css";
 import './App.css';
@@ -17,11 +17,18 @@ function App() {
     console.log(changes)
   }, {count, text, objectValue});
 
+  const demoRef = useRef<any>(null);
+
+  console.log('App renders');
 
   return (
     <div className="App">
       <input type={'number'} onChange={(e) => setCount(+e.target.value)} value={count}/>
-      <Stopwatch />
+      <button onClick={() => {
+        console.log('demoRef', demoRef);
+      }}>log data</button>
+
+      <UseImperativeHandleWithDeps name={'test'} ref={demoRef}/>
     </div>
   );
 }
