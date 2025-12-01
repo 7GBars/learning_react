@@ -28,21 +28,10 @@ export const UseImperativeHandle: React.FC<TUseImperativeHandleProps> = ({ refAs
 };
 
 
-type TProps = { name: string};
-type TRef = { componentID: string};
-
-export const ForwardRefWrapped = forwardRef<TRef,TProps>((props, ref) => {
-    const id = useId();
-
-    useImperativeHandle(ref, () => {
-        return {componentID: id}
-    }, [id]);
-
-    return <>ForwardRefExample</>
-});
 
 
-export const UseImperativeHandleWithDeps = forwardRef<{count: number},TProps>((props, ref) => {
+
+export const UseImperativeHandleWithDeps = forwardRef<{count: number}, any>((props, ref) => {
     const [count, setCount] = React.useState(0);
 
     useImperativeHandle(ref, () => {
@@ -51,3 +40,5 @@ export const UseImperativeHandleWithDeps = forwardRef<{count: number},TProps>((p
 
     return <><input type={'number'} onChange={(e) => setCount(+e.target.value)} /> </>
 })
+
+export * from './useScrollMethodeOfChildrenComponent'

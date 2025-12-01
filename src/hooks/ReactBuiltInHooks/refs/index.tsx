@@ -1,5 +1,5 @@
-import { useEffect, useRef, useState, type FC, type Ref } from 'react';
-import { UseImperativeHandle } from "@/hooks/ReactBuiltInHooks/refs/UseImperativeHandle";
+import React, {useEffect, useRef, useState, type FC, type Ref, forwardRef, useId, useImperativeHandle} from 'react';
+
 import { Button } from "primereact/button";
 
 
@@ -30,7 +30,7 @@ export const SimpleUseRef: FC<TSimpleUseRefProps> = ({}) => {
     <>
       <br/>
       <input type={'number'} onChange={(e) => setCount(+e.target.value)} value={count}/>
-      <UseImperativeHandle refAsProps={refForChildrenComponent}/>
+      <ForwardRefWrapped ref={refForChildrenComponent} name={'forwardRef'}/>
 
       <Button onClick={() => {
         console.log('simpleRef', simpleRef);
@@ -86,6 +86,16 @@ interface ButtonWithoutForwardRefProps {
   onClick?: () => void;
 }
 
+export const ForwardRefWrapped = forwardRef<TRef,TProps>((props, ref) => {
+  const id = useId();
+
+  useImperativeHandle(ref, () => {
+    return {componentID: id}
+  }, [id]);
+
+  return <>ForwardRefExample</>
+});
+
 export const ButtonWithoutForwardRef: FC<ButtonWithoutForwardRefProps> = ({ ref, children, onClick }) => {
   return (
       <button ref={ref} onClick={onClick}>
@@ -94,4 +104,9 @@ export const ButtonWithoutForwardRef: FC<ButtonWithoutForwardRefProps> = ({ ref,
   );
 };
 
-export * from './UseImperativeHandle';
+type TProps = { name: string};
+type TRef = { componentID: string};
+
+
+
+export * from './useImperativeHandle';

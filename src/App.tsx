@@ -2,7 +2,7 @@ import React, {useRef, useState} from 'react';
 
 import { withLogger } from "@/HOC";
 import {
-  ButtonWithoutForwardRef,
+  ButtonWithoutForwardRef, Page,
   SimpleUseRef,
   Stopwatch,
   useEffectWithDepsChangeCheck,
@@ -34,10 +34,7 @@ function App() {
         console.log('demoRef', demoRef);
       }}>log data</button>
 
-      <ButtonWithoutForwardRef
-          ref={demoRef}
-          onClick={() => console.log(demoRef)}
-      >Без ФорвардРефа</ButtonWithoutForwardRef>
+    <Page />
     </div>
   );
 }
