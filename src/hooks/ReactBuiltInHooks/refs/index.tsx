@@ -96,5 +96,23 @@ export const Counter: FC<CounterProps> = () => {
 };
 
 
+
+
+
+export const BadRef: FC<{}> = () => {
+  const myRef = useRef<number>(0);
+  const [count, setCount] = useState(0);
+
+  // 🚩 Не записывайте в реф во время рендеринга
+  myRef.current += 1;
+
+  // 🚩 Не читайте реф во время рендеринга
+  return <>
+    <h1>{myRef.current}</h1>
+    <button  onClick={() => setCount(c => ++c)}>we update the state value, but if it is used incorrectly, the ref value is also updated.</button>
+  </>
+};
+
+
 export * from './useImperativeHandle';
 export * from './forwardRef';
