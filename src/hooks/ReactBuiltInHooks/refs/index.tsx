@@ -78,7 +78,22 @@ export const Stopwatch: FC<{}> = () => {
 }
 
 
+interface CounterProps {}
 
+export const Counter: FC<CounterProps> = () => {
+  const ref = useRef<number>(0);
+
+  const handleClick = () => {
+    ref.current = ref.current + 1;
+    alert(`You clicked ${ref.current} times!`);
+  };
+
+  return (
+      <button onClick={handleClick}>
+        Click me!
+      </button>
+  );
+};
 
 
 export * from './useImperativeHandle';
