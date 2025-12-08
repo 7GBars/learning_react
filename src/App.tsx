@@ -6,7 +6,7 @@ import {
   SimpleUseRef,
   Stopwatch,
   useEffectWithDepsChangeCheck,
-  UseImperativeHandleWithDeps
+  UseImperativeHandleWithDeps, ManipulatingTheDOMWithARef
 } from "@/hooks";
 
 import "primereact/resources/themes/lara-light-cyan/theme.css";
@@ -34,8 +34,7 @@ function App() {
         console.log('demoRef', demoRef);
       }}>log data</button>
 
-    <Page />
-      <BadRef/>
+    <ManipulatingTheDOMWithARef />
     </div>
   );
 }
