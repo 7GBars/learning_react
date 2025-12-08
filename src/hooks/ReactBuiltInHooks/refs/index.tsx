@@ -132,6 +132,13 @@ export const ManipulatingTheDOMWithARef = () => {
 
 
 
+export const AvoidingRecreatingTheRefContents = () => {
+  const [count, setCount] = useState(0);
+  const usersRef = useRef(getUsers()); // 🚩 Будет вызываться каждый раз при ререндере, хоть и не влияет  ни на что
+
+  return <button onClick={() => setCount(c => ++c)}>count</button>
+
+}
 
 
 export const BadRef: FC<{}> = () => {
@@ -149,7 +156,10 @@ export const BadRef: FC<{}> = () => {
 };
 
 
-
+const getUsers = () => {
+  debugger
+  return [{id: 2, name: 'as'}, {id: 2, name: 'Geo'}];
+}
 
 export * from './useImperativeHandle';
 export * from './forwardRef';
