@@ -6,7 +6,7 @@ import {
   SimpleUseRef,
   Stopwatch,
   useEffectWithDepsChangeCheck,
-  UseImperativeHandleWithDeps, ManipulatingTheDOMWithARef, AvoidingRecreatingTheRefContents
+  UseImperativeHandleWithDeps, ManipulatingTheDOMWithARef, AvoidingRecreatingTheRefContents, ChatRoom
 } from "@/hooks";
 
 import "primereact/resources/themes/lara-light-cyan/theme.css";
@@ -34,7 +34,7 @@ function App() {
         console.log('demoRef', demoRef);
       }}>log data</button>
 
-    <AvoidingRecreatingTheRefContents/>
+      <ChatRoom roomId={count}/>
     </div>
   );
 }
