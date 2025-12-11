@@ -6,7 +6,7 @@ import {
   SimpleUseRef,
   Stopwatch,
   useEffectWithDepsChangeCheck,
-  UseImperativeHandleWithDeps, ManipulatingTheDOMWithARef, AvoidingRecreatingTheRefContents, ChatRoom
+  UseImperativeHandleWithDeps, ManipulatingTheDOMWithARef, AvoidingRecreatingTheRefContents, ChatRoom, WebDevSimplified1
 } from "@/hooks";
 
 import "primereact/resources/themes/lara-light-cyan/theme.css";
@@ -19,13 +19,12 @@ function App() {
   const [text, setText] = useState<string>('');
   const [objectValue, setObjectValue] = useState<{name: string}>({name: 'As'});
 
-  useEffectWithDepsChangeCheck((changes: any) => {
-    console.log(changes)
-  }, {count, text, objectValue});
+  // useEffectWithDepsChangeCheck((changes: any) => {
+  //   console.log(changes)
+  // }, {count, text, objectValue});
 
   const demoRef = useRef<any>(null);
 
-  console.log('App renders');
 
   return (
     <div className="App">
@@ -34,7 +33,7 @@ function App() {
         console.log('demoRef', demoRef);
       }}>log data</button>
 
-      <ChatRoom roomId={count}/>
+      <WebDevSimplified1 />
     </div>
   );
 }
