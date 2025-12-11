@@ -2,11 +2,18 @@ import React, {useRef, useState} from 'react';
 
 import { withLogger } from "@/HOC";
 import {
-  ButtonWithoutForwardRef, BadRef, Page,
+  ButtonWithoutForwardRef,
+  BadRef,
+  Page,
   SimpleUseRef,
   Stopwatch,
   useEffectWithDepsChangeCheck,
-  UseImperativeHandleWithDeps, ManipulatingTheDOMWithARef, AvoidingRecreatingTheRefContents, ChatRoom, WebDevSimplified1
+  UseImperativeHandleWithDeps,
+  ManipulatingTheDOMWithARef,
+  AvoidingRecreatingTheRefContents,
+  ChatRoom,
+  WebDevSimplified1,
+  WebDevSimplified2
 } from "@/hooks";
 
 import "primereact/resources/themes/lara-light-cyan/theme.css";
@@ -33,7 +40,7 @@ function App() {
         console.log('demoRef', demoRef);
       }}>log data</button>
 
-      <WebDevSimplified1 />
+      <WebDevSimplified2 />
     </div>
   );
 }
